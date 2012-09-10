@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @reward.name %>
+</p>
+
+<p>
+  <b>Card:</b>
+  <%= @reward.card_id %>
+</p>
+
+<p>
+  <b>Start period:</b>
+  <%= @reward.start_period %>
+</p>
+
+<p>
+  <b>End period:</b>
+  <%= @reward.end_period %>
+</p>
+
+<p>
+  <b>Reward rate:</b>
+  <%= @reward.reward_rate %>
+</p>
+
+<p>
+  <b>Reward limit:</b>
+  <%= @reward.reward_limit %>
+</p>
+
+
+<%= link_to 'Edit', edit_reward_path(@reward) %> |
+<%= link_to 'Back', rewards_path %>

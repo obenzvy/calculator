@@ -1,0 +1,34 @@
+
+<%= form_tag homepage_rewards_path, :method => "get" do %>
+Gas: <%= number_field_tag :gas %></br>
+Movies: <%= number_field_tag :movies %></br>
+Museums: <%= number_field_tag :museums %></br>
+Theme Parks: <%= number_field_tag :theme_parks %></br>
+Restaurants: <%= number_field_tag :restaurants %></br>
+Department Stores: <%= number_field_tag :department_stores %></br>
+<%= submit_tag "Submit", :name => nil   %>
+<% end %>
+<br/>
+
+<% @categories.each do |a| %>
+<%= a.name %>
+<% end %>
+</br></br>
+</br></br>
+
+Gas: <%= @gas %></br>
+Movies: <%= @movies %></br>
+Museums: <%= @museums %></br>
+Theme Parks: <%= @theme_parks %></br>
+Restaurants: <%= @restaurants %></br>
+Department Stores: <%= @department_stores %></br>
+
+<%= @gas_rewards %></br>
+<%= @movie_rewards %><br>
+<%= @museum_rewards %></br>
+<%= @theme_park_rewards %></br>
+<%= @restaurant_rewards %></br>
+<%= @department_store_rewards %></br>
+
+<% @cards %></br>
+<%= @sum %>

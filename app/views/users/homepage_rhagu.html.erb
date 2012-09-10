@@ -1,0 +1,28 @@
+
+<%= form_tag homepage_url, method: 'get' do %>
+
+	<%= number_field_tag :amount %>
+
+<% end %>
+
+<table>
+	<tr>
+	<% 12.times do %>
+		<th>
+			<%= number_to_currency(@amount) %>
+		</th>
+	<% end %>
+	</tr>
+	<% Card.all.each do |card| %>
+	<tr>
+	<% 12.times do %>	
+		<td>
+			<%= number_to_currency(card.monthly_payment(@amount)) %>
+			<ul>
+				
+		</td>
+	<% end %>
+	</tr>
+	<% end %>
+</table>
+

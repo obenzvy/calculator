@@ -1,0 +1,33 @@
+<h1>Listing rewards</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Card</th>
+    <th>Start period</th>
+    <th>End period</th>
+    <th>Reward rate</th>
+    <th>Reward limit</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @rewards.each do |reward| %>
+  <tr>
+    <td><%= reward.name %></td>
+    <td><%= reward.card_id %></td>
+    <td><%= reward.start_period %></td>
+    <td><%= reward.end_period %></td>
+    <td><%= reward.reward_rate %></td>
+    <td><%= reward.reward_limit %></td>
+    <td><%= link_to 'Show', reward %></td>
+    <td><%= link_to 'Edit', edit_reward_path(reward) %></td>
+    <td><%= link_to 'Destroy', reward, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Reward', new_reward_path %>

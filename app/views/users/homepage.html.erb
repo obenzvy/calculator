@@ -1,0 +1,19 @@
+<%= form_tag homepage_path, :method => "get" do %>
+<%= number_field :amount, params[:amount] %> 
+<%= submit_tag "Submit", :name => nil   %>
+<% end %>
+<br/>
+
+
+<%= Card.first.monthly_array(@general_amount) %>
+ <!-- .monthly_array(@general_amount)  -->
+
+
+<br/>
+<%# arry = @cards.map do |card| %>
+	<%#= card.name %>
+	<%#= @general_amount.map do |monthly_spend| %>
+	<%# monthly_spend * card.general_rate %>
+	<%# end %>
+<%# end %>
+<%#arry %>

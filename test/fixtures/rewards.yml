@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  card_id: 1
+  start_period: 2012-09-05
+  end_period: 2012-09-05
+  reward_rate: 1.5
+  reward_limit: 1
+
+two:
+  name: MyString
+  card_id: 1
+  start_period: 2012-09-05
+  end_period: 2012-09-05
+  reward_rate: 1.5
+  reward_limit: 1
