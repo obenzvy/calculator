@@ -1,34 +1,97 @@
 
 <%= form_tag homepage_rewards_path, :method => "get" do %>
-Gas: <%= number_field_tag :gas %></br>
-Movies: <%= number_field_tag :movies %></br>
-Museums: <%= number_field_tag :museums %></br>
-Theme Parks: <%= number_field_tag :theme_parks %></br>
-Restaurants: <%= number_field_tag :restaurants %></br>
-Department Stores: <%= number_field_tag :department_stores %></br>
+General Spend: <%= number_field_tag :general_spend, @general_spend %></br>
+Gas: <%= number_field_tag :gas, @gas %></br>
+Movies: <%= number_field_tag :movies, @movies %></br>
+Museums: <%= number_field_tag :museums, @museums %></br>
+Theme Parks: <%= number_field_tag :theme_parks, @theme_parks %></br>
+Restaurants: <%= number_field_tag :restaurants, @restaurants %></br>
+Department Stores: <%= number_field_tag :department_stores, @department_stores %></br>
 <%= submit_tag "Submit", :name => nil   %>
 <% end %>
 <br/>
 
-<% @categories.each do |a| %>
-<%= a.name %>
-<% end %>
+
 </br></br>
 </br></br>
 
-Gas: <%= @gas %></br>
-Movies: <%= @movies %></br>
-Museums: <%= @museums %></br>
-Theme Parks: <%= @theme_parks %></br>
-Restaurants: <%= @restaurants %></br>
-Department Stores: <%= @department_stores %></br>
+<table>
+	<tr>
+		<th>Card</th>
+		<th>General Rewards</th>
+		<th>Gas Amount</th>
+		<th>Movies Amount</th>
+		<th>Museums Amount</th>
+		<th>Theme Park Amount</th>
+		<th>Restaurant Amount</th>
+		<th>Department Store Amount</th>
+		<th>Total Rewards</th>
+	</tr>
 
-<%= @gas_rewards %></br>
-<%= @movie_rewards %><br>
-<%= @museum_rewards %></br>
-<%= @theme_park_rewards %></br>
-<%= @restaurant_rewards %></br>
-<%= @department_store_rewards %></br>
+	<% @cards.each do |card| %>
+	<% arry = [] %>
+	<tr>
+		<td><%= card.name %></td>
+		<% if @general_spend.present? %>
+		<td><%= card.general_rewards(@general_spend) %> </td>
+		<% else %>
+		<%= 0 %>
+		<% end %>
+		<% card.rewards.each do |category| %>
+		<% if category.name.downcase == "gas" %>
+		<td><%= category.threshold_check(@gas) %></td>
+		<% end %>
+		<% if category.name.downcase == "movies" %>
+		<td><%= movie_rewards = category.threshold_check(@movies) %></td>
+		<% end %> 
+		<% if category.name.downcase == "museums" %>
+		<td><%=  category.threshold_check(@museums) %></td>
+		<% end %> 
+		<% if category.name.downcase == "theme parks" %>
+		<td><%=  category.threshold_check(@theme_parks) %></td>
+		<% end %> 
+		<% if category.name.downcase == "restaurants" %>
+		<td><%=  category.threshold_check(@restaurants) %></td>
+		<% end %> 
+		<% if category.name.downcase == "department stores" %>
+		<td><%=  category.threshold_check(@department_stores) %></td>
+		<% end %> 
 
-<% @cards %></br>
-<%= @sum %>
+		<% end %>
+
+<!-- redo loop in order to input values into array to sum -->
+		<% if @general_spend.present? %>
+		<% arry << card.general_rewards(@general_spend) %>
+		<% else %>
+		<%= 0 %>
+		<% end %>
+
+		<% card.rewards.each do |category| %>
+		<% if category.name.downcase == "gas" %>
+		<% arry << category.threshold_check(@gas) %>
+		<% end %>
+		<% if category.name.downcase == "movies" %>
+		<% arry << category.threshold_check(@movies) %>
+		<% end %> 
+		<% if category.name.downcase == "museums" %>
+		<%  arry << category.threshold_check(@museums) %>
+		<% end %> 
+		<% if category.name.downcase == "theme parks" %>
+		<%  arry << category.threshold_check(@theme_parks) %>
+		<% end %> 
+		<% if category.name.downcase == "restaurants" %>
+		<%  arry << category.threshold_check(@restaurants) %>
+		<% end %> 
+		<% if category.name.downcase == "department stores" %>
+		<%  arry << category.threshold_check(@department_stores) %>
+		<% end %>
+
+		<% end %>
+		<td><%= arry.sum %></td>
+	</tr>
+	<% end %>
+</table>
+
+
+
+

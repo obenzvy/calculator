@@ -1,7 +1,16 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+if Rails.env.development?
+    
+  Card.destroy_all
+  Issuer.destroy_all
+  Reward.destroy_all
+  
+
+  Issuer.create [{:name => "Discover"},
+  				{:name => "Capital One"}]
+
+  Card.create [
+  	{:issuer_id => 8, :name => "More", :general_rate => 0.01, :rewards_type => "cash", :threshold_amount => 3000, :threshold_rate => 0.0025},
+  	{:issuer_id => 9, :name => "Cash", :general_rate => 0.015, :rewards_type => "cash", :threshold_amount => 0, :threshold_rate => 0}
+  ]
+
+end

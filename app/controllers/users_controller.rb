@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 		@categories = Reward.all
 		@cards = Card.all
 
+		@general_spend = params[:general_spend].to_i 
 		@gas = params[:gas].to_i 
 		@movies = params[:movies].to_i
 		@museums = params[:museums].to_i 
@@ -23,28 +24,10 @@ class UsersController < ApplicationController
 		@restaurants = params[:restaurants].to_i 
 		@department_stores = params[:department_stores].to_i 
 
-		@cards.each do |card|
-			card.name
-			card.rewards.each do |category|
-				if category.name.downcase == "gas" 
-					@gas_rewards = category.threshold_check(@gas)
-				elsif category.name.downcase == "movies"
-					@movie_rewards = category.threshold_check(@movies)
-				elsif category.name.downcase == "museums"
-					@museum_rewards = category.threshold_check(@museums)
-				elsif category.name.downcase == "theme parks"
-					@theme_park_rewards = category.threshold_check(@theme_parks)
-				elsif category.name.downcase == "restaurants"
-					@restaurant_rewards = category.threshold_check(@restaurants)
-				elsif category.name.downcase == "department stores"
-					@department_store_rewards = category.threshold_check(@department_stores)
-				end
-				# @sum = @gas_rewards.to_i + @movie_rewards.to_i
-			end
-		end
-
-		@sum = @cards.first.reward_check(params[:gas].to_i)
+		@sum = @cards.first.rewards.first
 
 
 	end
 end
+
+

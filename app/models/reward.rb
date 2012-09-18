@@ -15,8 +15,8 @@ class Reward < ActiveRecord::Base
  def threshold_check amount
  	if reward_window * amount > self.reward_limit
  		self.reward_limit * reward_rate
- 	else
- 		reward_window * amount * reward_rate
+ 	else 
+		reward_window * amount * reward_rate
  	end
  end
 

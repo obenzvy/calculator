@@ -16,7 +16,7 @@
 <% @rewards.each do |reward| %>
   <tr>
     <td><%= reward.name %></td>
-    <td><%= reward.card_id %></td>
+    <td><%= reward.card.name %></td>
     <td><%= reward.start_period %></td>
     <td><%= reward.end_period %></td>
     <td><%= reward.reward_rate %></td>
